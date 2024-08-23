@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript calculator</title>
+  <!-- designing -->
+  <style>
+    #outer{
+         height:600px;
+         width:550px;
+         background: rgb(19, 19, 19);
+         float:left;
+         padding-top: 110px;
+         padding-left: 130px;
+    }
+    #a{
+        height:500px;
+        width:400px;
+        background:rgb(199, 203, 208);
+        box-shadow: 30px 30px 60px black;
+    }
+    #b{
+        height:150px;
+        width:400px;
+        background: lightgray;
+    }
+    #c{
+        height:350px;
+        width:400px;
+        background: lightgray;
+        float:left;
+        
+    }
+    #result{
+        height:70px;
+        width:350px;
+        background: seashell;
+        padding:2px;
+        float:left;
+        margin-top:50px;
+        margin-left:23px;
+        box-shadow: 4px 4px 5px black inset;
+    }
+    #c{
+        float:left;
+    }
+    .m{
+       height:80px;
+       width:370px;
+       float:left;
+       margin-left:15px;
+       margin-top:3px;
+    }
+    .v{
+        height:70px;
+        width:85px;
+        background:beige;
+        float:left;
+        margin-left:7px;
+        border-radius: 9px;
+        box-shadow: 0 0 10px black inset;
+        text-align: center;
+        font-size: 45px;
+        padding-top:10px;
+    }
+    #v1{
+        height:68px;
+        width:85px;
+        background: rgb(175, 6, 6);
+        float:left;
+        color:white;
+        border-radius:9px;
+        margin-left:7px;
+        margin-top:3px;
+        text-align: center;
+        
+        font-size: 50px;
+    }
+    .k{
+        height:69px;
+        width:85px;
+        background: black;
+        float:left;
+        color:white;
+        border-radius:9px;
+        margin-left:7px;
+        margin-top:1px;
+        text-align: center;
+        padding-top:10px;
+        font-size: 45px;
+        
+    }
+    input[type="text"] { 
+        padding: 20px 30px; 
+        font-size: 45px; 
+        font-weight: bold; 
+        border: none; 
+        border-radius: 5px; 
+        border: 2px solid black; 
+        padding-left: 50px;
+    } 
+</style>
+    	<script src= 
+        "https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.js"
+                integrity= 
+        "sha512-BbVEDjbqdN3Eow8+empLMrJlxXRj5nEitiCAK5A1pUr66+jLVejo3PmjIaucRnjlB0P9R3rBUs3g5jXc8ti+fQ=="
+                crossorigin="anonymous"
+                referrerpolicy="no-referrer"></script> 
+            <script src= 
+        "https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"
+                integrity= 
+        "sha512-iphNRh6dPbeuPGIrQbCdbBF/qcqadKWLa35YPVfMZMHBSI6PLJh1om2xCTWhpVpmUyb4IvVS9iYnnYMkleVXLA=="
+                crossorigin="anonymous"
+                referrerpolicy="no-referrer"></script> 
+</head>
+<body>
+    <div id="outer">
+    <div id="a">
+        <div id="b">
+            <input type="text" id="result">
+        </div>
+        <div id="c">
+            <div class="m">
+                <input type="button" class="v" value="7" onclick="dis('7')"
+                onkeydown="myFunction(event)">
+                <input type="button" class="v" value="8" onclick="dis('8')"
+                onkeydown="myFunction(event)">
+                <input type="button" class="v" value="9" onclick="dis('9')"
+                onkeydown="myFunction(event)">
+                <input type="button" class="k" value="+" onclick="dis('+')"
+                onkeydown="myFunction(event)">
+            </div>
+            <div class="m">
+                <input type="button" class="v" value="4" onclick="dis('4')"
+                onkeydown="myFunction(event)">
+                <input type="button" class="v" value="5" onclick="dis('5')"
+                onkeydown="myFunction(event)">
+                <input type="button" class="v" value="6" onclick="dis('6')"
+                onkeydown="myFunction(event)">
+                <input type="button" class="k" value="-" onclick="dis('-')"
+                onkeydown="myFunction(event)">
+            </div>
+            <div class="m">
+                <input type="button" class="v" value="1" onclick="dis('1')"
+                onkeydown="myFunction(event)">
+                <input type="button" class="v" value="2" onclick="dis('2')"
+                onkeydown="myFunction(event)">
+                <input type="button" class="v" value="3" onclick="dis('3')"
+                onkeydown="myFunction(event)">
+                <input type="button" class="v" value="*" onclick="dis('*')"
+                onkeydown="myFunction(event)">
+            </div>
+            <div class="m">
+                <input type="button" value="c" onclick="clr()" id="v1"/>
+                <input type="button" class="v" value="0" onclick="dis('0')"
+                onkeydown="myFunction(event)">
+                <input type="button" value="=" onclick="solve()" class="k">
+                <input type="button" class="k" value="/" onclick="dis('/')"
+                onkeydown="myFunction(event)">
+            </div>
+        </div>    
+    </div>
+    </div>
+    <script> 
+		
+		// Function that display value 
+		function dis(val) { 
+			document.getElementById("result").value += val 
+		} 
+
+		function myFunction(event) { 
+			if (event.key == '0' || event.key == '1' 
+				|| event.key == '2' || event.key == '3' 
+				|| event.key == '4' || event.key == '5' 
+				|| event.key == '6' || event.key == '7' 
+				|| event.key == '8' || event.key == '9' 
+				|| event.key == '+' || event.key == '-' 
+				|| event.key == '*' || event.key == '/') 
+				document.getElementById("result").value += event.key; 
+		} 
+
+		var cal = document.getElementById("calcu"); 
+		cal.onkeyup = function (event) { 
+			if (event.keyCode === 13) { 
+				console.log("Enter"); 
+				let x = document.getElementById("result").value 
+				console.log(x); 
+				solve(); 
+			} 
+		} 
+
+		// Function that evaluates the digit and return result 
+		function solve() { 
+			let x = document.getElementById("result").value 
+			let y = math.evaluate(x) 
+			document.getElementById("result").value = y 
+		} 
+
+		// Function that clear the display 
+		function clr() { 
+			document.getElementById("result").value = "" 
+		} 
+	</script> 
+</body>
+</html>
